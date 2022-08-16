@@ -6,7 +6,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 def database():
-    client = MongoClient('mongodb://3.86.159.183:27017/company')
+    client = MongoClient('mongodb://172.31.100.119:27017/company')
     db = client.company
     e = db.Employees
     lst =[]
@@ -39,7 +39,7 @@ def badrequest(error):
 
 @app.route("/update/<int:id>",methods=['PUT'])
 def update_employee(id):
-    client = MongoClient('mongodb://3.86.159.183:27017/company')
+    client = MongoClient('mongodb://172.31.100.119:27017/company')
     db = client.company
     e = db.Employees
     data = json.loads(request.get_data())
@@ -57,7 +57,7 @@ def insert_Employee():
     employee["role"] = data["role"]
     employee["age"] = data["age"]
     employee["salary"] = data["salary"]
-    client = MongoClient('mongodb://3.86.159.183:27017/company')
+    client = MongoClient('mongodb://172.31.100.119:27017/company')
     db = client.company
     e = db.Employees
     e.insert_one(employee)
@@ -73,7 +73,7 @@ def delete_Employee(id):
     if len(employee) == 0:
         abort(404)
 
-    client = MongoClient('mongodb://3.86.159.183:27017/company')
+    client = MongoClient('mongodb://172.31.100.119:27017/company')
     db = client.company
     e = db.Employees
     e.delete_one({"_id" : id})
